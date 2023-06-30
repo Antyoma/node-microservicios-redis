@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const config = require('../config');
 
@@ -18,7 +18,7 @@ function handleCon() {
     connection.connect((err) => {
         if (err) {
             console.error('[db err]', err);
-            setTimeout(handleCon, 60000);
+            setTimeout(handleCon, 90000);
         } else {
             console.log ('DB CONNECTADA CAUSA!')
         }
@@ -35,3 +35,16 @@ function handleCon() {
 }
 
 handleCon();
+
+function list(table, id){
+    return new Promise( (resolve, reject) =>{
+        connection.query(`SELECT * FROM ${table}`, (err, data) => {
+            if (err) return reject(err);
+            resolve(data);
+        })
+    })
+}
+
+module.exports = {
+    list,
+};
