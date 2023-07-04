@@ -40,7 +40,7 @@ function upsert(req, res, next) {
 }
 
 function follow(req, res, next){
-    controller.follow(req.user.id, req.params.id)
+    Controller.follow(req.user.id, req.params.id)
     .then(data => {
         response.success(req, res, data, 201);
     })

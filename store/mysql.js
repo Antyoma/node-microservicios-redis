@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require('mysql');
 
 const config = require('../config');
 
@@ -13,7 +13,7 @@ const dbconf = {
 let connection;
 
 function handleCon() {
-    connection = mysql.createConnection(dbconf)
+    connection = mysql.createConnection(dbconf);
 
     connection.connect((err) => {
         if (err) {
@@ -80,11 +80,11 @@ function upsert(table, data){
     }
 }
 
-function query(table,query){
+function query(table, query){
     return new Promise((resolve,reject)=>{
-        connection.query(`SELECT * FROM ${table} WHERE ?`,query,(err,res)=>{
-            if(err)return reject(err);
-            resolve(res[0]||null);
+        connection.query(`SELECT * FROM ${table} WHERE ?`, query, (err, res)=>{
+            if (err) return reject(err);
+            resolve(res[0] || null);
         })
     })
 }
