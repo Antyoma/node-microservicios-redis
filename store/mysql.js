@@ -75,16 +75,16 @@ function update(table, data){
 function upsert(table, data){
     if (data && data.id){
         return update(table, data);
-    } else {
+    }else{
         return insert(table, data)
     }
 }
 
-function query(table, query){
-    return new Promise((resolve, reject) => {
-        connection.query(`SELECT * FROM ${table} WHERE ?`, query, (err, res) => {
-            if (err) return reject(err);
-            resolve(res[0] || null);
+function query(table,query){
+    return new Promise((resolve,reject)=>{
+        connection.query(`SELECT * FROM ${table} WHERE ?`,query,(err,res)=>{
+            if(err)return reject(err);
+            resolve(res[0]||null);
         })
     })
 }
